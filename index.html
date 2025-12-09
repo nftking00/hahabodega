@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haha Bodega | Legalize & Enjoy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CUSTOM STYLES --- */
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Fredoka', sans-serif;
+            background-color: #87CEEB;
+        }
+
+        /* The Hero Background */
+        .hero-section {
+            background-image: url('assets/background.png');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 80px;
+            padding-top: 20px;
+        }
+
+        /* --- LOGO --- */
+        .brand-header {
+            text-align: center;
+            margin-top: 60px;
+            z-index: 5;
+        }
+        .logo-image {
+            max-width: 520px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+
+        /* --- CALL BUTTON --- */
+        .call-widget {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #5e361f;
+            border-radius: 100px;
+            box-shadow: 4px 4px 0px #5e361f;
+            text-decoration: none;
+            color: #000;
+            font-family: 'Chewy', cursive;
+            font-size: 1.6rem;
+            z-index: 100;
+            transition: transform 0.2s;
+            white-space: nowrap;
+        }
+        .call-widget:hover {
+            transform: scale(1.05);
+            background-color: #5e361f;
+            color: #000;
+        }
+        .call-icon {
+            max-width: 250px;
+             margin-right: -1.2px;
+             margin-bottom: 0px;
+            vertical-align: middle;
+        }
+
+        /* --- MENU CONTAINER --- */
+        .menu-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            border: 3px solid #000;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            max-width: 900px;
+            width: 90%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-circle {
+            border-radius: 50%;
+            background-color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+        .icon-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .menu-label {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2rem;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        /* --- MODAL STYLING --- */
+        .modal-content {
+            border: 4px solid #000;
+            border-radius: 20px;
+            background: linear-gradient(180deg, #fff 0%, #f9f9f9 100%);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+        }
+        .modal-header { 
+            border-bottom: 3px solid #000; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title {
+            font-family: 'Chewy', cursive; 
+            font-size: 2.5rem; 
+            color: #000;
+            width: 100%;
+            text-align: center;
+        }
+        .modal-footer { border-top: none; justify-content: center; }
+
+        /* Custom Close Button */
+        .btn-close-custom {
+            background: #ff6b6b;
+            border: 2px solid #000;
+            color: #000;
+            font-family: 'Chewy', cursive;
+            padding: 5px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-close-custom:hover { transform: scale(1.05); background: #ff4f4f; color: #000;}
+
+        /* --- PRODUCT LIST STYLES --- */
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #ccc; /* Receipt style */
+            padding: 12px 0;
+            text-align: left;
+        }
+        .product-item:last-child { border-bottom: none; }
+        
+        .product-info h4 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #000;
+        }
+        .product-meta {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 2px;
+        }
+        .product-price {
+            font-family: 'Chewy', cursive;
+            font-size: 1.5rem;
+            color: #2e8b57; /* Money Green */
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* Badges */
+        .badge {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            border: 1px solid #000;
+            color: #000;
+            text-transform: uppercase;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        .badge-best { background-color: #FFD700; } /* Gold */
+        .badge-indica { background-color: #C3B1E1; } /* Purple */
+        .badge-sativa { background-color: #FF7F50; } /* Orange */
+        .badge-hybrid { background-color: #90EE90; } /* Green */
+        .badge-acc { background-color: #FFD700; } /* Yellow for accessories */
+        
+        .badge-best-text {
+            display: block;
+            color: #e67e22; 
+            font-weight: 800; 
+            font-size: 0.75rem; 
+            margin-bottom: 2px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .logo-image { max-width: 340px; }
+            .call-widget { position: relative; display: inline-block; top: auto; right: auto; margin-bottom: 20px; font-size: 1.2rem; }
+            .brand-header { margin-top: 20px; }
+            .hero-section { justify-content: flex-start; gap: 20px; }
+            .icon-image { width: 50px; height: 50px; }
+            .menu-container { padding: 10px; }
+        }
+        
+        /* Age Gate Buttons */
+        .btn-yes { background-color: #7CFC00; border: 2px solid #000; color: #000; font-family: 'Chewy', cursive; }
+        .btn-no { background-color: #ff6b6b; border: 2px solid #000; color: #000; font-family: 'Chewy', cursive; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        
+        <div class="container-fluid p-0">
+            <div class="d-flex justify-content-center flex-column align-items-center position-relative">
+                
+                <a href="tel:5554209333" class="call-widget">
+                    <img src="assets/call.png" alt="Call" class="call-icon">
+                </a>
+
+                <div class="brand-header">
+                    <img src="assets/logo.png" alt="Haha Bodega Logo" class="logo-image">
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-grid">
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#modalFlower">
+                    <div class="icon-circle">
+                        <img src="assets/flower.png" alt="Flower" class="icon-image">
+                    </div>
+                    <div class="menu-label">Flower</div>
+                </div>
+
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#modalEdibles">
+                    <div class="icon-circle">
+                        <img src="assets/edibles.png" alt="Edibles" class="icon-image">
+                    </div>
+                    <div class="menu-label">Edibles</div>
+                </div>
+
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#modalVapes">
+                    <div class="icon-circle">
+                        <img src="assets/vapes.png" alt="Vapes" class="icon-image">
+                    </div>
+                    <div class="menu-label">Vapes</div>
+                </div>
+
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#modalPrerolls">
+                    <div class="icon-circle">
+                        <img src="assets/pre-rolls.png" alt="Pre-rolls" class="icon-image">
+                    </div>
+                    <div class="menu-label">Pre-rolls</div>
+                </div>
+
+                <div class="menu-item" data-bs-toggle="modal" data-bs-target="#modalAccessories">
+                    <div class="icon-circle">
+                        <img src="assets/accessories.png" alt="Accessories" class="icon-image">
+                    </div>
+                    <div class="menu-label">Accessories</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="mb-0">
+            &copy; 2024 HahaBodega.com. For use by adults 21+ only. Keep out of reach of children. 
+            <br>
+            Warning: Marijuana can impair concentration and judgment. Do not operate machinery.
+        </p>
+    </footer>
+
+    <div class="modal fade" id="ageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display:block; border-bottom:none;">
+                    <h2 class="modal-title">Wait a sec! 🍄</h2>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 1.2rem;">You must be 21+ to enter the Bodega.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-no" onclick="alert('Sorry, come back when you are older!')">I'm Under 21</button>
+                    <button type="button" class="btn btn-yes" id="enterBtn">I am 21+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFlower" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 40px;"></div> <h2 class="modal-title">Flower Menu</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+                    
+                    <div class="product-item">
+                        <div class="product-info">
+                            <span class="badge-best-text"><i class="fas fa-star"></i> BEST SELLER</span>
+                            <h4>OG Kush <span class="badge badge-indica">Indica</span></h4>
+                            <div class="product-meta">3.5g</div>
+                        </div>
+                        <div class="product-price">$40</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Blue Dream <span class="badge badge-sativa">Sativa</span></h4>
+                            <div class="product-meta">3.5g</div>
+                        </div>
+                        <div class="product-price">$35</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Gelato #33 <span class="badge badge-hybrid">Hybrid</span></h4>
+                            <div class="product-meta">3.5g</div>
+                        </div>
+                        <div class="product-price">$45</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Granddaddy Purple <span class="badge badge-indica">Indica</span></h4>
+                            <div class="product-meta">3.5g</div>
+                        </div>
+                        <div class="product-price">$40</div>
+                    </div>
+
+                     <div class="product-item">
+                        <div class="product-info">
+                            <h4>Sour Diesel <span class="badge badge-sativa">Sativa</span></h4>
+                            <div class="product-meta">7g (Quarter)</div>
+                        </div>
+                        <div class="product-price">$70</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">Close Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPrerolls" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 40px;"></div>
+                    <h2 class="modal-title">Pre-Rolls</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>House Blend Pack <span class="badge badge-hybrid">Hybrid</span></h4>
+                            <div class="product-meta">5 x 0.5g</div>
+                        </div>
+                        <div class="product-price">$25</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <span class="badge-best-text"><i class="fas fa-star"></i> BEST SELLER</span>
+                            <h4>Infused Diamond Roll <span class="badge badge-indica">Indica</span></h4>
+                            <div class="product-meta">1g</div>
+                        </div>
+                        <div class="product-price">$20</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Classic Sativa Joint <span class="badge badge-sativa">Sativa</span></h4>
+                            <div class="product-meta">1g</div>
+                        </div>
+                        <div class="product-price">$10</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">Close Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalVapes" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 40px;"></div>
+                    <h2 class="modal-title">Vapes</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Live Resin Cart <span class="badge badge-hybrid">Hybrid</span></h4>
+                            <div class="product-meta">1g</div>
+                        </div>
+                        <div class="product-price">$50</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Disposable Pen <span class="badge badge-indica">Indica</span></h4>
+                            <div class="product-meta">0.5g</div>
+                        </div>
+                        <div class="product-price">$35</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <span class="badge-best-text"><i class="fas fa-star"></i> BEST SELLER</span>
+                            <h4>Solventless Rosin <span class="badge badge-sativa">Sativa</span></h4>
+                            <div class="product-meta">0.5g</div>
+                        </div>
+                        <div class="product-price">$60</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">Close Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEdibles" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 40px;"></div>
+                    <h2 class="modal-title">Edibles</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Sleep Gummies <span class="badge badge-indica">Indica</span></h4>
+                            <div class="product-meta">100mg</div>
+                        </div>
+                        <div class="product-price">$20</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Milk Chocolate Bar <span class="badge badge-hybrid">Hybrid</span></h4>
+                            <div class="product-meta">100mg</div>
+                        </div>
+                        <div class="product-price">$22</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Sour Watermelon <span class="badge badge-sativa">Sativa</span></h4>
+                            <div class="product-meta">100mg</div>
+                        </div>
+                        <div class="product-price">$20</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">Close Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAccessories" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 40px;"></div>
+                    <h2 class="modal-title">Accessories</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4">
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Classic Rolling Papers <span class="badge badge-acc">Paper</span></h4>
+                            <div class="product-meta">King Size + Tips</div>
+                        </div>
+                        <div class="product-price">$5</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Bodega Lighter <span class="badge badge-acc">Fire</span></h4>
+                            <div class="product-meta">Standard Bic Style</div>
+                        </div>
+                        <div class="product-price">$3</div>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-info">
+                             <span class="badge-best-text"><i class="fas fa-star"></i> BEST SELLER</span>
+                            <h4>4-Piece Grinder <span class="badge badge-acc">Gear</span></h4>
+                            <div class="product-meta">Non-Stick Metal</div>
+                        </div>
+                        <div class="product-price">$25</div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-info">
+                            <h4>Glass Spoon Pipe <span class="badge badge-acc">Glass</span></h4>
+                            <div class="product-meta">Hand Blown</div>
+                        </div>
+                        <div class="product-price">$20</div>
+                    </div>
+
+                     <div class="product-item">
+                        <div class="product-info">
+                            <h4>Rolling Tray <span class="badge badge-acc">Tray</span></h4>
+                            <div class="product-meta">Small (Metal)</div>
+                        </div>
+                        <div class="product-price">$15</div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">Close Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var ageModal = new bootstrap.Modal(document.getElementById('ageModal'));
+            ageModal.show();
+            $('#enterBtn').click(function() {
+                ageModal.hide();
+            });
+        });
+    </script>
+
+</body>
+</html>
