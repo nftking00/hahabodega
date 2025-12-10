@@ -1,0 +1,443 @@
+/* --- CUSTOM STYLES --- */
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Fredoka', sans-serif;
+    background-color: #87CEEB;
+}
+
+/* The Hero Background */
+.hero-section {
+    position: relative;
+    background-image: url('assets/images/background.png'); /* fallback image */
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 80px;
+    padding-top: 20px;
+}
+
+/* Background video positioning (behind all content) */
+.bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure hero content appears above the video */
+.hero-section .container-fluid,
+.hero-section .menu-container,
+.hero-section .brand-header,
+.call-widget {
+    position: relative;
+    z-index: 2;
+}
+
+/* Mobile adjustments (keep existing behavior) */
+@media (max-width: 768px) {
+    .hero-section {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+}
+/* --- LOGO --- */
+.brand-header {
+    text-align: center;
+    margin-top: 60px;
+    z-index: 5;
+}
+.logo-image {
+    max-width: 520px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+}
+
+/* --- CALL BUTTON --- */
+.call-widget {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #5e361f;
+    border-radius: 100px;
+    box-shadow: 4px 4px 0px #5e361f;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Chewy', cursive;
+    font-size: 1.6rem;
+    z-index: 100;
+    transition: transform 0.2s;
+    white-space: nowrap;
+}
+.call-widget:hover {
+    transform: scale(1.05);
+    background-color: #5e361f;
+    color: #000;
+}
+.call-icon {
+    max-width: 250px;
+        margin-right: -1.2px;
+        margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+/* --- MENU CONTAINER --- */
+.menu-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    border: 3px solid #000;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    padding: 20px;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.menu-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.icon-circle {
+    border-radius: 50%;
+    background-color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+.icon-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.menu-label {
+    font-family: 'Chewy', cursive;
+    font-size: 1.2rem;
+    color: #000;
+    text-transform: uppercase;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.8rem;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* --- MODAL STYLING --- */
+.modal-content {
+    border: 4px solid #000;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #fff 0%, #f9f9f9 100%);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+}
+.modal-header { 
+    border-bottom: 3px solid #000; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-title {
+    font-family: 'Chewy', cursive; 
+    font-size: 2.5rem; 
+    color: #000;
+    width: 100%;
+    text-align: center;
+}
+.modal-footer { border-top: none; justify-content: center; }
+
+/* Custom Close Button */
+.btn-close-custom {
+    background: #ff6b6b;
+    border: 2px solid #000;
+    color: #000;
+    font-family: 'Chewy', cursive;
+    padding: 5px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.btn-close-custom:hover { transform: scale(1.05); background: #ff4f4f; color: #000;}
+
+/* --- PRODUCT LIST STYLES --- */
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed #ccc; /* Receipt style */
+    padding: 12px 0;
+    text-align: left;
+}
+.product-item:last-child { border-bottom: none; }
+
+.product-info h4 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #000;
+}
+.product-meta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 2px;
+}
+.product-price {
+    font-family: 'Chewy', cursive;
+    font-size: 1.5rem;
+    color: #2e8b57; /* Money Green */
+    min-width: 60px;
+    text-align: right;
+}
+
+/* Badges */
+.badge {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    border: 1px solid #000;
+    color: #000;
+    text-transform: uppercase;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.badge-best { background-color: #FFD700; } /* Gold */
+.badge-indica { background-color: #C3B1E1; } /* Purple */
+.badge-sativa { background-color: #FF7F50; } /* Orange */
+.badge-hybrid { background-color: #90EE90; } /* Green */
+.badge-acc { background-color: #FFD700; } /* Yellow for accessories */
+
+.badge-best-text {
+    display: block;
+    color: #e67e22; 
+    font-weight: 800; 
+    font-size: 0.75rem; 
+    margin-bottom: 2px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .logo-image { max-width: 340px; }
+    .call-widget { position: relative; display: inline-block; top: auto; right: auto; margin-bottom: 20px; font-size: 1.2rem; margin-top: 30px; }
+    .brand-header { margin-top: 20px; }
+    .hero-section { justify-content: flex-start; gap: 20px; }
+    .icon-image { width: 50px; height: 50px; }
+    .menu-container { padding: 10px; }
+}
+
+/* Age Gate Buttons */
+.btn-yes { background-color: #7CFC00; border: 2px solid #000; color: #000; font-family: 'Chewy', cursive; }
+.btn-no { background-color: #ff6b6b; border: 2px solid #000; color: #000; font-family: 'Chewy', cursive; }
+
+/* Audio toggle button (uses your images) */
+.audio-toggle {
+    position: absolute;
+    bottom: 1%;
+    right: 20px;
+    background-color: #FFD700;
+    border-radius: 100px;
+    height: 50px;
+    width: 50px;
+    box-shadow: 4px 4px 0px #5E361F;
+    color: #5E361F;
+    font-family: 'Chewy', cursive;
+    font-size: 1.2rem;
+    z-index: 999;
+    transition: transform 0.2s;
+    border: none;
+    display: none;
+}
+.audio-toggle:hover { transform: scale(1.05); }
+.audio-icon { width: 30px; height: 30px; vertical-align: middle; }
+
+.tier-header {
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* Table Header Row (Purple Background) */
+.flower-table-head th {
+    background-color: #C3B1E1;
+    border-color: #000; /* Ensures borders match the table */
+}
+
+/* Specific styling for the Strain column header */
+.th-strain {
+    width: 35%;
+    text-align: left;
+}
+
+/* The Price Cells (Green & Bold) */
+.flower-price {
+    color: #2e8b57 !important;
+    font-weight: bold;
+}
+
+/* --- ANIMATION LAYER STYLES --- */
+
+.animation-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* Crucial: lets clicks pass through to buttons */
+    z-index: 1; /* Sits above background image */
+}
+
+/* Ensure your main content sits ABOVE the animations */
+
+
+/* --- CLOUDS --- */
+.cloud {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 4rem; /* Adjust size of cloud icon */
+    opacity: 0.9;
+    filter: drop-shadow(0px 4px 2px rgba(0,0,0,0.1));
+}
+
+.cloud-1 {
+    top: 10%;
+    left: -100px;
+    animation: floatRight 45s linear infinite;
+}
+
+.cloud-2 {
+    top: 25%;
+    left: -150px;
+    font-size: 6rem;
+    opacity: 0.6;
+    animation: floatRight 60s linear infinite;
+    animation-delay: 5s;
+}
+
+.cloud-3 {
+    top: 5%;
+    left: -200px;
+    font-size: 3rem;
+    animation: floatRight 35s linear infinite;
+    animation-delay: 15s;
+}
+
+@keyframes floatRight {
+    0% { transform: translateX(-200px); }
+    100% { transform: translateX(120vw); } /* Move way off screen */
+}
+
+/* --- TWINKLING STARS --- */
+.star {
+    position: absolute;
+    color: #FFF; /* White stars */
+    font-size: 1.5rem;
+    animation: twinkle 3s infinite ease-in-out;
+    filter: drop-shadow(0 0 5px gold); /* Gold glow */
+}
+
+.star-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 1rem; }
+.star-2 { top: 25%; right: 15%; animation-delay: 1s; font-size: 0.8rem; }
+.star-3 { top: 5%; left: 50%; animation-delay: 2s; font-size: 1.2rem; }
+.star-4 { top: 40%; left: 5%; animation-delay: 0.5s; font-size: 0.9rem; }
+.star-5 { top: 10%; right: 30%; animation-delay: 1.5s; font-size: 1.4rem; color: yellow;}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+}
+
+/* --- FLYING BUTTERFLIES --- */
+.butterfly {
+    position: absolute;
+    font-size: 2.5rem;
+    z-index: 2;
+}
+
+.butterfly-1 {
+    top: 60%;
+    left: -10%;
+    animation: flyPath1 25s linear infinite;
+}
+
+.butterfly-2 {
+    top: 30%;
+    left: -10%;
+    font-size: 2rem;
+    animation: flyPath2 35s linear infinite;
+    animation-delay: 10s;
+    filter: hue-rotate(90deg); /* Changes color slightly */
+}
+
+@keyframes flyPath1 {
+    0% { left: -10%; top: 60%; transform: rotate(15deg); }
+    25% { top: 50%; transform: rotate(0deg); }
+    50% { top: 65%; transform: rotate(15deg); }
+    75% { top: 55%; transform: rotate(0deg); }
+    100% { left: 110%; top: 60%; transform: rotate(15deg); }
+}
+
+@keyframes flyPath2 {
+    0% { right: -10%; top: 30%; transform: scaleX(-1); } /* ScaleX flips it to face left */
+    100% { right: 110%; top: 10%; transform: scaleX(-1); }
+}
+
+/* --- CUSTOM CARTOON SCROLLBAR --- */
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2e8b57 #000000;
+}
+
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+    width: 10px; /* Chunky width for cartoon feel */
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff; /* White track */
+    border-left: 3px solid #000; /* Black border on the left of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2e8b57; /* Matches your Footer Green */
+    border-radius: 20px;       /* Round pill shape */
+    border: 3px solid #000;    /* Thick cartoon outline */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #FFD700; /* Turns Gold (Badge color) on hover */
+    cursor: pointer;
+}
