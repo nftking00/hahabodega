@@ -63,6 +63,10 @@
                  <div class="brand-header">
                     <img src="assets/images/logo2.png" alt="Haha Bodega Logo" class="logo-image">
                 </div>
+
+                <div class="promo-banner text-center mt-2 px-3 py-2 rounded" role="status" aria-live="polite" style="background: rgba(255, 215, 0, 0.92); color: #111; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+                    BUY ONE GET ONE FREE ON EVERYTHING
+                </div>
                     
                      <a href="tel:5554209333" class="call-widget">
                         <img src="assets/images/call.png" alt="Call" class="call-icon">
@@ -116,7 +120,7 @@
         </button>
         <audio id="bgAudio" src="assets/music.mp3" preload="auto" loop></audio>
         <p class="mb-0">
-            &copy; 2024 HahaBodega.com. For use by adults 21+ only. Keep out of reach of children. 
+            &copy; <span id="currentYear"></span> HahaBodega.com. For use by adults 21+ only. Keep out of reach of children. 
             <br>
             Warning: Marijuana can impair concentration and judgment. Do not operate machinery.
         </p>
@@ -435,6 +439,8 @@
 
     <script>
         $(document).ready(function() {
+            $('#currentYear').text(new Date().getFullYear());
+
             var ageModal = new bootstrap.Modal(document.getElementById('ageModal'));
             ageModal.show();
             $('#enterBtn').click(function() {
