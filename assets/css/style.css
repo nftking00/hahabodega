@@ -63,6 +63,46 @@ body, html {
     vertical-align: middle;
 }
 
+.instagram-widget {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 3px solid #5d3522;
+    border-radius: 999px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: #E1306C;
+    z-index: 101;
+    transition: transform 0.2s;
+}
+.instagram-widget:hover {
+    transform: scale(1.05);
+    color: #C13584;
+}
+.instagram-widget i {
+    font-size: 28px;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .instagram-widget {
+        width: 48px;
+        height: 48px;
+        position: relative;
+        left: 0;
+        margin-bottom: 10px;
+    }
+    .instagram-widget i {
+        font-size: 24px;
+    }
+}
+
 /* --- MENU CONTAINER --- */
 .menu-container {
     background: rgba(255, 255, 255, 0.95);
